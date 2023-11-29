@@ -48,7 +48,7 @@ namespace Utility.Valocity.ProfileHelper
                         name = "Betty";
                     }
                     // Adds new people to the list
-					// LUCAS: Replace magic numbers with named constants to improve code readability and maintainability
+					// LUCAS: Break down this line into multiple lines and separate the logic into clear steps and replace magic numbers with named constants to improve code readability and maintainability
                     _people.Add(new People(name, DateTime.UtcNow.Subtract(new TimeSpan(random.Next(18, 85) * 356, 0, 0, 0))));
                 }
                 catch (Exception e)
