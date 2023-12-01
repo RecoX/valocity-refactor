@@ -1,0 +1,30 @@
+using CodingAssessment.Refactor;
+using Xunit;
+
+namespace Tests
+{
+    public class BirthingUnitTests
+    {
+        [Fact]
+        public void GetPeople_ReturnsEmptyList_WhenRequestedZeroPeople()
+        {
+            var birthingUnit = new BirthingUnit();
+
+            var people = birthingUnit.GetPeople(0);
+
+            Assert.Empty(people);
+        }
+
+        [Fact]
+        public void GetPeople_ReturnsPeopleList_WhenRequestedOneOrMore()
+        {
+            var birthingUnit = new BirthingUnit();
+
+            int requestedCount = 5;
+            var people = birthingUnit.GetPeople(requestedCount);
+
+            Assert.NotNull(people);
+            Assert.Equal(requestedCount, people.Count);
+        }
+    }
+}
