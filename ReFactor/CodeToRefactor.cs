@@ -8,16 +8,16 @@ namespace CodingAssessment.Refactor
     {
         private static readonly DateTimeOffset Under16 = DateTimeOffset.UtcNow.AddYears(-15);
         public string Name { get; private set; }
-        public DateTimeOffset DOB { get; private set; }
+        public DateTimeOffset DateOfBirth { get; private set; }
 
         public Person(string name) : this(name, Under16.Date)
         {
         }
 
-        public Person(string name, DateTime dob)
+        public Person(string name, DateTime dateOfBirth)
         {
             Name = name;
-            DOB = dob;
+            DateOfBirth = dateOfBirth;
         }
     }
 
@@ -87,7 +87,7 @@ namespace CodingAssessment.Refactor
                 var currentDateTime = DateTime.Now;
                 var thirtyYearsAgo = currentDateTime.AddYears(-30);
 
-                result = result.Where(bob => bob.DOB <= thirtyYearsAgo);
+                result = result.Where(bob => bob.DateOfBirth <= thirtyYearsAgo);
             }
 
             return result;

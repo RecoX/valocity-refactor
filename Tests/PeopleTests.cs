@@ -13,7 +13,7 @@ namespace Tests
 
             var person = new Person(expectedName);
 
-            Assert.Equal(expectedDateOfBirth, person.DOB);
+            Assert.Equal(expectedDateOfBirth, person.DateOfBirth);
             Assert.Equal(expectedName, person.Name);
         }
 
@@ -26,7 +26,7 @@ namespace Tests
 
             var person = new Person(expectedName, customDateOfBirth);
 
-            Assert.Equal(expectedDateOfBirth, person.DOB);
+            Assert.Equal(expectedDateOfBirth, person.DateOfBirth);
             Assert.Equal(expectedName, person.Name);
         }
     }
