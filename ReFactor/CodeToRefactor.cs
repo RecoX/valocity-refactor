@@ -4,82 +4,136 @@ using System.Linq;
 
 namespace CodingAssessment.Refactor
 {
-    public class People
+    public class Person
     {
         private static readonly DateTimeOffset Under16 = DateTimeOffset.UtcNow.AddYears(-15);
         public string Name { get; private set; }
-        public DateTimeOffset DOB { get; private set; }
+        public DateTimeOffset DateOfBirth { get; private set; }
 
-        public People(string name) : this(name, Under16.Date)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Person"/> class with the specified name.
+        /// The DateOfBirth is set to the default value for individuals under 16.
+        /// </summary>
+        /// <param name="name">The name of the person.</param>
+        public Person(string name) : this(name, Under16.Date)
         {
         }
 
-        public People(string name, DateTime dob)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Person"/> class with the specified name and date of birth.
+        /// </summary>
+        /// <param name="name">The name of the person.</param>
+        /// <param name="dateOfBirth">The date of birth of the person.</param>
+        public Person(string name, DateTime dateOfBirth)
         {
             Name = name;
-            DOB = dob;
+            DateOfBirth = dateOfBirth;
         }
     }
 
     public class BirthingUnit
     {
-        /// <summary>
-        /// MaxItemsToRetrieve
-        /// </summary>
-        private List<People> _people;
+        private List<Person> _people;
 
         public BirthingUnit()
         {
-            _people = new List<People>();
+            _people = new List<Person>();
         }
 
         /// <summary>
-        /// GetPeoples
+        /// Adds a person in the internal _people property
         /// </summary>
-        /// <param name="j"></param>
-        /// <returns>List<object></returns>
-        public List<People> GetPeople(int i)
+        /// <param name="person"></param>
+        public void AddPerson(Person person)
         {
-            for (int j = 0; j < i; j++)
+            if (person == null)
+            {
+                throw new ArgumentNullException(nameof(person), "Person cannot be null.");
+            }
+
+            _people.Add(person);
+        }
+
+
+        /// <summary>
+        /// Generates a list of people with random names and birthdates.
+        /// </summary>
+        /// <param name="quantity">The number of people to be generated.</param>
+        /// <returns>A list of generated people.</returns>
+        public List<Person> GeneratePeopleList (int quantity)
+        {
+            for (int personIndex = 0; personIndex < quantity; personIndex++)
             {
                 try
                 {
-                    // Creates a dandon Name
-                    string name = string.Empty;
-                    var random = new Random();
-                    if (random.Next(0, 1) == 0) {
-                        name = "Bob";
-                    }
-                    else {
-                        name = "Betty";
-                    }
-                    // Adds new people to the list
-                    _people.Add(new People(name, DateTime.UtcNow.Subtract(new TimeSpan(random.Next(18, 85) * 356, 0, 0, 0))));
+                    string name = GenerateRandomName();
+                    DateTime randomBirthDate = GenerateRandomBirthDate();
+
+                    // Add a new person to the list
+                    _people.Add(new Person(name, randomBirthDate));
                 }
                 catch (Exception e)
                 {
-                    // Dont think this should ever happen
-                    throw new Exception("Something failed in user creation");
+                    throw new Exception("GeneratePeopleList error: ", e);
                 }
             }
             return _people;
         }
 
-        private IEnumerable<People> GetBobs(bool olderThan30)
+        /// <summary>
+        /// Retrieves a filtered list of people named Bob deppending on criteria.
+        /// </summary>
+        /// <param name="olderThan30">A boolean value indicating whether to filter by age (older than 30 years).</param>
+        /// <returns>An IEnumerable of People objects representing persons named Bob.</returns>
+        public IEnumerable<Person> GetBobs(bool olderThan30)
         {
-            return olderThan30 ? _people.Where(x => x.Name == "Bob" && x.DOB >= DateTime.Now.Subtract(new TimeSpan(30 * 356, 0, 0, 0))) : _people.Where(x => x.Name == "Bob");
-        }
+            var result = _people.Where(person => person.Name == "Bob");
 
-        public string GetMarried(People p, string lastName)
-        {
-            if (lastName.Contains("test"))
-                return p.Name;
-            if ((p.Name.Length + lastName).Length > 255)
+            if (olderThan30)
             {
-                (p.Name + " " + lastName).Substring(0, 255);
+                var currentDateTime = DateTime.Now;
+                var thirtyYearsAgo = currentDateTime.AddYears(-30);
+
+                result = result.Where(bob => bob.DateOfBirth <= thirtyYearsAgo);
             }
 
-            return p.Name + " " + lastName;
+            return result;
         }
+
+        public string GetMarriedName(Person person, string lastName)
+        {
+            if (lastName.Contains("test"))
+            {
+                return person.Name;
+            }
+
+            string fullName = $"{person.Name} {lastName}";
+
+            if (fullName.Length > 255)
+            {
+                fullName = fullName.Substring(0, 255);
+            }
+
+            return fullName;
+        }
+
+        private string GenerateRandomName()
+        {
+            var random = new Random();
+            int randomNumber = random.Next(0, 2);
+            return randomNumber == 0 ? "Bob" : "Betty";
+        }
+
+        private DateTime GenerateRandomBirthDate()
+        {
+            var random = new Random();
+            const int minAge = 18;
+            const int maxAge = 85;
+
+            int randomAge = random.Next(minAge, maxAge);
+            DateTime birthDate = DateTime.UtcNow.Subtract(TimeSpan.FromDays(randomAge * 365));
+            return birthDate;
+        }
+
     }
 }
