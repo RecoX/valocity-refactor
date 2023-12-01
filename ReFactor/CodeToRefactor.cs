@@ -10,10 +10,20 @@ namespace CodingAssessment.Refactor
         public string Name { get; private set; }
         public DateTimeOffset DateOfBirth { get; private set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Person"/> class with the specified name.
+        /// The DateOfBirth is set to the default value for individuals under 16.
+        /// </summary>
+        /// <param name="name">The name of the person.</param>
         public Person(string name) : this(name, Under16.Date)
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Person"/> class with the specified name and date of birth.
+        /// </summary>
+        /// <param name="name">The name of the person.</param>
+        /// <param name="dateOfBirth">The date of birth of the person.</param>
         public Person(string name, DateTime dateOfBirth)
         {
             Name = name;
