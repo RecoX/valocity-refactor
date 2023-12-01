@@ -23,9 +23,6 @@ namespace CodingAssessment.Refactor
 
     public class BirthingUnit
     {
-        /// <summary>
-        /// MaxItemsToRetrieve
-        /// </summary>
         private List<Person> _people;
 
         public BirthingUnit()
