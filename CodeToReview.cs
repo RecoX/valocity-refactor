@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Utility.Valocity.ProfileHelper
 {
-    public class People
+    public class People // Lucas: The class name must not be in plural use "Person" instead
     {
      private static readonly DateTimeOffset Under16 = DateTimeOffset.UtcNow.AddYears(-15);
      public string Name { get; private set; }
