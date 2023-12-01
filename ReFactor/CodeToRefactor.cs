@@ -49,32 +49,25 @@ namespace CodingAssessment.Refactor
 
 
         /// <summary>
-        /// GetPeoples
+        /// Generates a list of people with random names and birthdates.
         /// </summary>
-        /// <param name="j"></param>
-        /// <returns>List<object></returns>
-        public List<People> GetPeople(int i)
+        /// <param name="quantity">The number of people to be generated.</param>
+        /// <returns>A list of generated people.</returns>
+        public List<People> GetPeople (int quantity)
         {
-            for (int j = 0; j < i; j++)
+            for (int personIndex = 0; personIndex < quantity; personIndex++)
             {
                 try
                 {
-                    // Creates a dandon Name
-                    string name = string.Empty;
-                    var random = new Random();
-                    if (random.Next(0, 1) == 0) {
-                        name = "Bob";
-                    }
-                    else {
-                        name = "Betty";
-                    }
-                    // Adds new people to the list
-                    _people.Add(new People(name, DateTime.UtcNow.Subtract(new TimeSpan(random.Next(18, 85) * 356, 0, 0, 0))));
+                    string name = GenerateRandomName();
+                    DateTime randomBirthDate = GenerateRandomBirthDate();
+
+                    // Add a new person to the list
+                    _people.Add(new People(name, randomBirthDate));
                 }
                 catch (Exception e)
                 {
-                    // Dont think this should ever happen
-                    throw new Exception("Something failed in user creation");
+                    throw new Exception("GeneratePeopleList error: ", e);
                 }
             }
             return _people;
@@ -110,6 +103,24 @@ namespace CodingAssessment.Refactor
             }
 
             return fullName;
+        }
+
+        private string GenerateRandomName()
+        {
+            var random = new Random();
+            int randomNumber = random.Next(0, 2);
+            return randomNumber == 0 ? "Bob" : "Betty";
+        }
+
+        private DateTime GenerateRandomBirthDate()
+        {
+            var random = new Random();
+            const int minAge = 18;
+            const int maxAge = 85;
+
+            int randomAge = random.Next(minAge, maxAge);
+            DateTime birthDate = DateTime.UtcNow.Subtract(TimeSpan.FromDays(randomAge * 365));
+            return birthDate;
         }
 
     }
