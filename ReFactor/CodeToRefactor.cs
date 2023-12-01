@@ -90,7 +90,7 @@ namespace CodingAssessment.Refactor
             return result;
         }
 
-        public string GetMarried(Person person, string lastName)
+        public string GetMarriedName(Person person, string lastName)
         {
             if (lastName.Contains("test"))
             {
