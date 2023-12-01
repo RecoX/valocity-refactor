@@ -3,7 +3,7 @@
     public class Deck
     {
         public readonly List<Card> cards;
-        private readonly string[] ranks = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Joker" };
+        private readonly string[] ranks = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King" };
         private readonly string[] suits = { "Hearts", "Diamonds", "Clubs", "Spades" };
 
         public Deck()
