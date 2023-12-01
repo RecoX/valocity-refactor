@@ -100,16 +100,17 @@ namespace CodingAssessment.Refactor
             return result;
         }
 
-        public string GetMarried(People p, string lastName)
+        public string GetMarried(People person, string lastName)
         {
-            if (lastName.Contains("test"))
-                return p.Name;
-            if ((p.Name.Length + lastName).Length > 255)
+            string fullName = $"{person.Name} {lastName}";
+
+            if (fullName.Length > 255)
             {
-                (p.Name + " " + lastName).Substring(0, 255);
+                fullName = fullName.Substring(0, 255);
             }
 
-            return p.Name + " " + lastName;
+            return fullName;
         }
+
     }
 }
