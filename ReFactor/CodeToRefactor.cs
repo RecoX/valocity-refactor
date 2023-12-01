@@ -95,6 +95,11 @@ namespace CodingAssessment.Refactor
 
         public string GetMarried(People person, string lastName)
         {
+            if (lastName.Contains("test"))
+            {
+                return person.Name;
+            }
+
             string fullName = $"{person.Name} {lastName}";
 
             if (fullName.Length > 255)
