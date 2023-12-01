@@ -32,7 +32,7 @@ namespace Utility.Valocity.ProfileHelper
         /// </summary>
         /// <param name="j"></param> // LUCAS: The parameter j should have more meaningful name like "quantity" and a description is needed like "The number of people to be created"
         /// <returns>List<object></returns>
-        public List<People> GetPeople(int i) // LUCAS: Parameter name discrepancy (i should be j)
+        public List<People> GetPeople(int i) // LUCAS: Function name can be more explicit like GetPeopleList. Parameter name discrepancy (i should be j)
         {
             for (int j = 0; j < i; j++)
             {
