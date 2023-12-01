@@ -3,7 +3,7 @@ using Xunit;
 
 namespace Tests
 {
-    public class PeopleTests
+    public class PersonTests
     {
         [Fact]
         public void Constructor_WithDefaultDateOfBirth_SetsDateOfBirthToUnder16YearsAgo()
