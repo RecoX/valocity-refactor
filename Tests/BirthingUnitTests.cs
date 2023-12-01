@@ -26,5 +26,31 @@ namespace Tests
             Assert.NotNull(people);
             Assert.Equal(requestedCount, people.Count);
         }
+
+        [Theory]
+        [InlineData("John", "Doe", "John Doe")]
+        [InlineData("Alice", "Smith", "Alice Smith")]
+        [InlineData("Bob", "test", "Bob")]
+        public void GetMarried_ReturnsFullName(string firstName, string lastName, string expectedFullName)
+        {
+            var person = new People(firstName);
+            var birthingUnit = new BirthingUnit();
+
+            string marriedName = birthingUnit.GetMarried(person, lastName);
+
+            Assert.Equal(expectedFullName, marriedName);
+        }
+
+        [Fact]
+        public void GetMarried_TruncatesFullNameIfTooLong()
+        {
+            var person = new People("Michael");
+            var birthingUnit = new BirthingUnit();
+            string longLastName = new string('X', 300);
+
+            string marriedName = birthingUnit.GetMarried(person, longLastName);
+
+            Assert.Equal(255, marriedName.Length);
+        }
     }
 }
