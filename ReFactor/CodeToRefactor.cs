@@ -50,7 +50,7 @@ namespace CodingAssessment.Refactor
         /// </summary>
         /// <param name="quantity">The number of people to be generated.</param>
         /// <returns>A list of generated people.</returns>
-        public List<Person> GetPeople (int quantity)
+        public List<Person> GeneratePeopleList (int quantity)
         {
             for (int personIndex = 0; personIndex < quantity; personIndex++)
             {

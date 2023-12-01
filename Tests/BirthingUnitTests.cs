@@ -6,22 +6,22 @@ namespace Tests
     public class BirthingUnitTests
     {
         [Fact]
-        public void GetPeople_ReturnsEmptyList_WhenRequestedZeroPeople()
+        public void GeneratePeopleList_ReturnsEmptyList_WhenRequestedZeroPeople()
         {
             var birthingUnit = new BirthingUnit();
 
-            var people = birthingUnit.GetPeople(0);
+            var people = birthingUnit.GeneratePeopleList(0);
 
             Assert.Empty(people);
         }
 
         [Fact]
-        public void GetPeople_ReturnsPeopleList_WhenRequestedOneOrMore()
+        public void GeneratePeopleList_ReturnsPeopleList_WhenRequestedOneOrMore()
         {
             var birthingUnit = new BirthingUnit();
 
             int requestedCount = 5;
-            var people = birthingUnit.GetPeople(requestedCount);
+            var people = birthingUnit.GeneratePeopleList(requestedCount);
 
             Assert.NotNull(people);
             Assert.Equal(requestedCount, people.Count);
@@ -93,7 +93,7 @@ namespace Tests
 
             birthingUnit.AddPerson(person);
 
-            Assert.Contains(person, birthingUnit.GetPeople(1));
+            Assert.Contains(person, birthingUnit.GeneratePeopleList(1));
         }
     }
 }
