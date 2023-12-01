@@ -80,6 +80,11 @@ namespace CodingAssessment.Refactor
             return _people;
         }
 
+        /// <summary>
+        /// Retrieves a filtered list of people named Bob deppending on criteria.
+        /// </summary>
+        /// <param name="olderThan30">A boolean value indicating whether to filter by age (older than 30 years).</param>
+        /// <returns>An IEnumerable of People objects representing persons named Bob.</returns>
         public IEnumerable<People> GetBobs(bool olderThan30)
         {
             var result = _people.Where(person => person.Name == "Bob");
