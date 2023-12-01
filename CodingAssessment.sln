@@ -15,6 +15,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardsGame.Core", "CardsGame.Core\CardsGame.Core.csproj", "{FE86B197-3243-4BAD-A7B7-05444CF6E563}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardsGame.ConsoleApp", "CardsGame.ConsoleApp\CardsGame.ConsoleApp.csproj", "{358D306B-8D4C-47BD-A466-54BF84310B5F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardsGame.Tests", "CardsGame.Tests\CardsGame.Tests.csproj", "{602867BA-3410-4E23-B0BD-799F759BC017}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +35,18 @@ Global
 		{3737666C-6FB0-4DFC-8D96-A518AAF245EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3737666C-6FB0-4DFC-8D96-A518AAF245EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3737666C-6FB0-4DFC-8D96-A518AAF245EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE86B197-3243-4BAD-A7B7-05444CF6E563}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE86B197-3243-4BAD-A7B7-05444CF6E563}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE86B197-3243-4BAD-A7B7-05444CF6E563}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE86B197-3243-4BAD-A7B7-05444CF6E563}.Release|Any CPU.Build.0 = Release|Any CPU
+		{358D306B-8D4C-47BD-A466-54BF84310B5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{358D306B-8D4C-47BD-A466-54BF84310B5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{358D306B-8D4C-47BD-A466-54BF84310B5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{358D306B-8D4C-47BD-A466-54BF84310B5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{602867BA-3410-4E23-B0BD-799F759BC017}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{602867BA-3410-4E23-B0BD-799F759BC017}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{602867BA-3410-4E23-B0BD-799F759BC017}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{602867BA-3410-4E23-B0BD-799F759BC017}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
