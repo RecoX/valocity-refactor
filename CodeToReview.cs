@@ -31,13 +31,14 @@ namespace Utility.Valocity.ProfileHelper
         /// GetPeoples // LUCAS: There is a typo error in "GetPeople" also the summary should be more descriptive like "Creates a list of people"
         /// </summary>
         /// <param name="j"></param> // LUCAS: The parameter j should have more meaningful name like "quantity" and a description is needed like "The number of people to be created"
-        /// <returns>List<object></returns>
+        /// <returns>List<object></returns> // Lucas: It should have a clearer description of what returns, like "A list of people"
         public List<People> GetPeople(int i) // LUCAS: Function name can be more explicit like GetPeopleList. Parameter name discrepancy (i should be j)
         {
             for (int j = 0; j < i; j++)
             {
                 try
                 {
+                    // Lucas: The logic for generate a random name can be decoupled to a separate function to improve code readability and maintainability
                     // Creates a dandon Name // LUCAS: Typo in comment
                     string name = string.Empty;
                     var random = new Random();
