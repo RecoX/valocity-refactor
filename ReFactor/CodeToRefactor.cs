@@ -34,6 +34,21 @@ namespace CodingAssessment.Refactor
         }
 
         /// <summary>
+        /// Adds a person in the internal _people property
+        /// </summary>
+        /// <param name="person"></param>
+        public void AddPerson(People person)
+        {
+            if (person == null)
+            {
+                throw new ArgumentNullException(nameof(person), "Person cannot be null.");
+            }
+
+            _people.Add(person);
+        }
+
+
+        /// <summary>
         /// GetPeoples
         /// </summary>
         /// <param name="j"></param>
@@ -65,7 +80,7 @@ namespace CodingAssessment.Refactor
             return _people;
         }
 
-        private IEnumerable<People> GetBobs(bool olderThan30)
+        public IEnumerable<People> GetBobs(bool olderThan30)
         {
             return olderThan30 ? _people.Where(x => x.Name == "Bob" && x.DOB >= DateTime.Now.Subtract(new TimeSpan(30 * 356, 0, 0, 0))) : _people.Where(x => x.Name == "Bob");
         }

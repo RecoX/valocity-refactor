@@ -84,5 +84,16 @@ namespace Tests
             Assert.Contains(olderThan30Bob, result);
             Assert.Contains(youngerThan30Bob, result);
         }
+
+        [Fact]
+        public void AddPerson_ShouldAddPersonToList()
+        {
+            var birthingUnit = new BirthingUnit();
+            var person = new People("Alice", DateTime.UtcNow);
+
+            birthingUnit.AddPerson(person);
+
+            Assert.Contains(person, birthingUnit.GetPeople(1));
+        }
     }
 }
