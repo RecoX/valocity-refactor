@@ -4,17 +4,17 @@ using System.Linq;
 
 namespace CodingAssessment.Refactor
 {
-    public class People
+    public class Person
     {
         private static readonly DateTimeOffset Under16 = DateTimeOffset.UtcNow.AddYears(-15);
         public string Name { get; private set; }
         public DateTimeOffset DOB { get; private set; }
 
-        public People(string name) : this(name, Under16.Date)
+        public Person(string name) : this(name, Under16.Date)
         {
         }
 
-        public People(string name, DateTime dob)
+        public Person(string name, DateTime dob)
         {
             Name = name;
             DOB = dob;
@@ -26,18 +26,18 @@ namespace CodingAssessment.Refactor
         /// <summary>
         /// MaxItemsToRetrieve
         /// </summary>
-        private List<People> _people;
+        private List<Person> _people;
 
         public BirthingUnit()
         {
-            _people = new List<People>();
+            _people = new List<Person>();
         }
 
         /// <summary>
         /// Adds a person in the internal _people property
         /// </summary>
         /// <param name="person"></param>
-        public void AddPerson(People person)
+        public void AddPerson(Person person)
         {
             if (person == null)
             {
@@ -53,7 +53,7 @@ namespace CodingAssessment.Refactor
         /// </summary>
         /// <param name="quantity">The number of people to be generated.</param>
         /// <returns>A list of generated people.</returns>
-        public List<People> GetPeople (int quantity)
+        public List<Person> GetPeople (int quantity)
         {
             for (int personIndex = 0; personIndex < quantity; personIndex++)
             {
@@ -63,7 +63,7 @@ namespace CodingAssessment.Refactor
                     DateTime randomBirthDate = GenerateRandomBirthDate();
 
                     // Add a new person to the list
-                    _people.Add(new People(name, randomBirthDate));
+                    _people.Add(new Person(name, randomBirthDate));
                 }
                 catch (Exception e)
                 {
@@ -78,7 +78,7 @@ namespace CodingAssessment.Refactor
         /// </summary>
         /// <param name="olderThan30">A boolean value indicating whether to filter by age (older than 30 years).</param>
         /// <returns>An IEnumerable of People objects representing persons named Bob.</returns>
-        public IEnumerable<People> GetBobs(bool olderThan30)
+        public IEnumerable<Person> GetBobs(bool olderThan30)
         {
             var result = _people.Where(person => person.Name == "Bob");
 
@@ -93,7 +93,7 @@ namespace CodingAssessment.Refactor
             return result;
         }
 
-        public string GetMarried(People person, string lastName)
+        public string GetMarried(Person person, string lastName)
         {
             if (lastName.Contains("test"))
             {

@@ -33,7 +33,7 @@ namespace Tests
         [InlineData("Bob", "test", "Bob")]
         public void GetMarried_ReturnsFullName(string firstName, string lastName, string expectedFullName)
         {
-            var person = new People(firstName);
+            var person = new Person(firstName);
             var birthingUnit = new BirthingUnit();
 
             string marriedName = birthingUnit.GetMarried(person, lastName);
@@ -44,7 +44,7 @@ namespace Tests
         [Fact]
         public void GetMarried_TruncatesFullNameIfTooLong()
         {
-            var person = new People("Michael");
+            var person = new Person("Michael");
             var birthingUnit = new BirthingUnit();
             string longLastName = new string('X', 300);
 
@@ -57,13 +57,13 @@ namespace Tests
         public void GetBobs_ReturnsBobs_WhenOlderThan30()
         {
             var birthingUnit = new BirthingUnit();
-            var olderThan30Bob = new People("Bob", DateTime.UtcNow.Subtract(new TimeSpan(35 * 356, 0, 0, 0)));
-            var youngerThan30Bob = new People("Bob", DateTime.UtcNow.Subtract(new TimeSpan(25 * 356, 0, 0, 0)));
+            var olderThan30Bob = new Person("Bob", DateTime.UtcNow.Subtract(new TimeSpan(35 * 356, 0, 0, 0)));
+            var youngerThan30Bob = new Person("Bob", DateTime.UtcNow.Subtract(new TimeSpan(25 * 356, 0, 0, 0)));
 
             birthingUnit.AddPerson(olderThan30Bob);
             birthingUnit.AddPerson(youngerThan30Bob);
 
-            IEnumerable<People> result = birthingUnit.GetBobs(true);
+            IEnumerable<Person> result = birthingUnit.GetBobs(true);
 
             Assert.Contains(olderThan30Bob, result);
             Assert.DoesNotContain(youngerThan30Bob, result);
@@ -73,13 +73,13 @@ namespace Tests
         public void GetBobs_ReturnsAllBobs_WhenNotOlderThan30()
         {
             var birthingUnit = new BirthingUnit();
-            var olderThan30Bob = new People("Bob", DateTime.UtcNow.Subtract(new TimeSpan(35 * 356, 0, 0, 0)));
-            var youngerThan30Bob = new People("Bob", DateTime.UtcNow.Subtract(new TimeSpan(25 * 356, 0, 0, 0)));
+            var olderThan30Bob = new Person("Bob", DateTime.UtcNow.Subtract(new TimeSpan(35 * 356, 0, 0, 0)));
+            var youngerThan30Bob = new Person("Bob", DateTime.UtcNow.Subtract(new TimeSpan(25 * 356, 0, 0, 0)));
 
             birthingUnit.AddPerson(olderThan30Bob);
             birthingUnit.AddPerson(youngerThan30Bob);
 
-            IEnumerable<People> result = birthingUnit.GetBobs(false);
+            IEnumerable<Person> result = birthingUnit.GetBobs(false);
 
             Assert.Contains(olderThan30Bob, result);
             Assert.Contains(youngerThan30Bob, result);
@@ -89,7 +89,7 @@ namespace Tests
         public void AddPerson_ShouldAddPersonToList()
         {
             var birthingUnit = new BirthingUnit();
-            var person = new People("Alice", DateTime.UtcNow);
+            var person = new Person("Alice", DateTime.UtcNow);
 
             birthingUnit.AddPerson(person);
 

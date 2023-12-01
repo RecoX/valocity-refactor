@@ -11,7 +11,7 @@ namespace Tests
             DateTimeOffset expectedDateOfBirth = DateTimeOffset.UtcNow.AddYears(-15).Date;
             string expectedName = "Alice";
 
-            var person = new People(expectedName);
+            var person = new Person(expectedName);
 
             Assert.Equal(expectedDateOfBirth, person.DOB);
             Assert.Equal(expectedName, person.Name);
@@ -24,7 +24,7 @@ namespace Tests
             DateTimeOffset expectedDateOfBirth = customDateOfBirth;
             string expectedName = "Bob";
 
-            var person = new People(expectedName, customDateOfBirth);
+            var person = new Person(expectedName, customDateOfBirth);
 
             Assert.Equal(expectedDateOfBirth, person.DOB);
             Assert.Equal(expectedName, person.Name);
