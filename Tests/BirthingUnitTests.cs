@@ -52,5 +52,37 @@ namespace Tests
 
             Assert.Equal(255, marriedName.Length);
         }
+
+        [Fact]
+        public void GetBobs_ReturnsBobs_WhenOlderThan30()
+        {
+            var birthingUnit = new BirthingUnit();
+            var olderThan30Bob = new People("Bob", DateTime.UtcNow.Subtract(new TimeSpan(35 * 356, 0, 0, 0)));
+            var youngerThan30Bob = new People("Bob", DateTime.UtcNow.Subtract(new TimeSpan(25 * 356, 0, 0, 0)));
+
+            birthingUnit.AddPerson(olderThan30Bob);
+            birthingUnit.AddPerson(youngerThan30Bob);
+
+            IEnumerable<People> result = birthingUnit.GetBobs(true);
+
+            Assert.Contains(olderThan30Bob, result);
+            Assert.DoesNotContain(youngerThan30Bob, result);
+        }
+
+        [Fact]
+        public void GetBobs_ReturnsAllBobs_WhenNotOlderThan30()
+        {
+            var birthingUnit = new BirthingUnit();
+            var olderThan30Bob = new People("Bob", DateTime.UtcNow.Subtract(new TimeSpan(35 * 356, 0, 0, 0)));
+            var youngerThan30Bob = new People("Bob", DateTime.UtcNow.Subtract(new TimeSpan(25 * 356, 0, 0, 0)));
+
+            birthingUnit.AddPerson(olderThan30Bob);
+            birthingUnit.AddPerson(youngerThan30Bob);
+
+            IEnumerable<People> result = birthingUnit.GetBobs(false);
+
+            Assert.Contains(olderThan30Bob, result);
+            Assert.Contains(youngerThan30Bob, result);
+        }
     }
 }
